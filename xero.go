@@ -212,7 +212,7 @@ type ValidationError struct {
 func (r *ErrorResponse) Error() string {
 	var elementsDetails string
 
-	// Пройтись по каждому элементу и собрать ValidationErrors
+	// Loop through each element and collect ValidationErrors
 	for _, element := range r.Elements {
 		for _, ve := range element.ValidationErrors {
 			if elementsDetails == "" {
@@ -223,14 +223,14 @@ func (r *ErrorResponse) Error() string {
 		}
 	}
 
-	// Если есть ValidationErrors, добавить их в сообщение
+	// If there are ValidationErrors, add them to the message
 	if elementsDetails != "" {
 		return fmt.Sprintf("%v %v %d: %v %v - %v - %v",
 			r.Response.Request.Method, r.Response.Request.URL, r.Response.StatusCode,
 			r.ErrorNumber, r.Type, r.Message, elementsDetails)
 	}
 
-	// Если ValidationErrors нет, вернуть стандартное сообщение
+	// If there are no ValidationErrors, return the default message
 	return fmt.Sprintf("%v %v %d: %v %v - %v",
 		r.Response.Request.Method, r.Response.Request.URL, r.Response.StatusCode,
 		r.ErrorNumber, r.Type, r.Message)
