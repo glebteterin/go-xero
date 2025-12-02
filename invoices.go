@@ -166,6 +166,7 @@ type Invoice struct {
 	LineItems    []*LineItem    `json:"LineItems,omitempty"`
 	Payments     []*Payment     `json:"Payments,omitempty"`
 	Overpayments []*Overpayment `json:"Overpayments,omitempty"`
+	CreditNotes  []*CreditNote  `json:"CreditNotes,omitempty"`
 
 	ValidationErrors      []*ValidationError `json:"ValidationErrors,omitempty"`
 	StatusAttributeString string             `json:"StatusAttributeString,omitempty"`
