@@ -90,6 +90,7 @@ type CreditNote struct {
 	SubTotal         *float64      `json:"SubTotal,omitempty"`
 	TotalTax         *float64      `json:"TotalTax,omitempty"`
 	Total            *float64      `json:"Total,omitempty"`
+	AppliedAmount    *float64      `json:"AppliedAmount,omitempty"`
 	UpdatedDateUTC   *NetDate      `json:"UpdatedDateUTC,omitempty"` // "/Date(1496620800000+0000)/"
 	CurrencyCode     *string       `json:"CurrencyCode,omitempty"`
 	FullyPaidOnDate  *NetDate      `json:"FullyPaidOnDate,omitempty"` // "/Date(1496620800000+0000)/"
