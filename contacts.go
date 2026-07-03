@@ -46,8 +46,18 @@ func (s *ContactsService) GetContacts(ctx context.Context, opts *ContactListOpti
 	return c, resp, nil
 }
 
-func (s *ContactsService) UpsertContacts(ctx context.Context, contacts []*Contact) (*ContactsResponse, *http.Response, error) {
-	req, err := s.client.NewRequest("POST", "api.xro/2.0/contacts?summarizeErrors=false", &ContactsRequest{Contacts: contacts})
+type ContactsUpsertOptions struct {
+	SummarizeErrors bool `url:"summarizeErrors"`
+}
+
+func (s *ContactsService) UpsertContacts(ctx context.Context, contacts []*Contact, opts *ContactsUpsertOptions) (*ContactsResponse, *http.Response, error) {
+	u := "api.xro/2.0/contacts"
+	u, err := addOptions(u, opts)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	req, err := s.client.NewRequest("POST", u, &ContactsRequest{Contacts: contacts})
 	if err != nil {
 		return nil, nil, err
 	}
